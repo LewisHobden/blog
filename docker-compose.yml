@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  jekyll:
+    image: jekyll/jekyll:latest # Use the latest Jekyll image
+    command: tail -f /dev/null
+    volumes:
+      - .:/srv/jekyll # Mount the current directory to the Jekyll's serving directory
+      - bundle_data:/usr/local/bundle # Persist bundle data
+    ports:
+      - "4000:4000" # Map port 4000 of the container to port 4000 on the host
+    environment:
+      JEKYLL_ENV: development
+
+volumes:
+  bundle_data:
